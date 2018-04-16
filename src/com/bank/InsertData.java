@@ -32,9 +32,13 @@ public class InsertData extends HttpServlet {
 			String name=request.getParameter("name");
 			String loc=request.getParameter("loc");
 			int amt=Integer.parseInt(request.getParameter("amt"));
+			//Mysql connection properties
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false","root","root");
 			
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "tiger");
+//			Oracle connection Properties
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "tiger");
 			pstmt=connection.prepareStatement("insert into bank_customers values(?,?,?)");
 			pstmt.setInt(1, accno);
 			pstmt.setString(2, name);

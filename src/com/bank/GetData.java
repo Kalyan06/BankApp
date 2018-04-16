@@ -31,9 +31,13 @@ public class GetData extends HttpServlet {
 		try
 		{
 			String search=request.getParameter("search");
+			//Mysql connection properties
+			Class.forName("com.mysql.jdbc.Driver");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false","root","root");
 			
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "tiger");
+//			Oracle connection Properties
+//			Class.forName("oracle.jdbc.driver.OracleDriver");
+//			connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "tiger");
 			pstmt1=connection.prepareStatement("select bc.account_number,bc.name,bc.location,bb.balance from bank_customers bc,bank_balance bb where bc.account_number=bb.account_number and bc.location=?");
 			pstmt1.setString(1, search);
 			rs1=pstmt1.executeQuery();
