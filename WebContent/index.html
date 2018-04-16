@@ -5,16 +5,34 @@
 <title>Bank Appliction</title>
 </head>
 <body>
-<form action="InsertData" method="post">
-	<label>Account Number</label>
-	<input type="text" name="accno" required><br>
-	<label>Name</label>
-	<input type="text" name="name" required><br>
-	<label>Location</label>
-	<input type="text" name="loc" required><br>
-	<label>Amount</label>
-	<input type="text" name="amt" required><br>
-	<input type="submit" value=" Submit ">
-</form>
+	<table>
+		<form action="InsertData1" method="post">
+		<tr>
+			<td><label>Account Number</label></td>
+			<td><input type="text" name="accno" required></td>
+		</tr>
+		<tr>
+			<td><label>Name</label></td>
+			<td><input type="text" name="name" required></td>
+		</tr>
+		<tr>
+			<td><label>Location</label></td>
+			<td><input type="text" name="loc" required></td>
+		</tr>
+		<tr>
+			<td><label>Amount</label></td>
+			<td><input type="text" name="amt" required></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><input type="submit" value=" Submit "></td>
+		</tr>
+		</form>
+	</table><br><br><br>
+	<table>
+		<form action="GetData" method="post">
+		<tr><td>Enter Location <input type="text" name="search"> </td><td> <input type="submit" value="Search"></td></tr>
+		</form>
+	</table> 
+	
 </body>
 </html>
