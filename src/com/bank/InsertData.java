@@ -15,9 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 public class InsertData extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public InsertData() {
         super();
         // TODO Auto-generated constructor stub
@@ -27,11 +24,10 @@ public class InsertData extends HttpServlet {
 		Connection connection=null;
 		PreparedStatement pstmt=null;
 		PreparedStatement pstmt1=null;
-		PrintWriter out=null;
+		PrintWriter out=response.getWriter();
 		response.setContentType("text/html");
-		out=response.getWriter();
+		
 		try {
-			
 			int accno=Integer.parseInt(request.getParameter("accno"));
 			String name=request.getParameter("name");
 			String loc=request.getParameter("loc");
@@ -57,7 +53,6 @@ public class InsertData extends HttpServlet {
 		catch (Exception e) {
 			System.out.println("Invalid Input");
 		}
-		
 		finally {
 			try {
 				if (pstmt!=null && pstmt1!=null && connection!=null) {
