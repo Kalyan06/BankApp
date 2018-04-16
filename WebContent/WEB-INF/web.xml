@@ -19,4 +19,14 @@
     <servlet-name>InsertData</servlet-name>
     <url-pattern>/InsertData</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetData</display-name>
+    <servlet-name>GetData</servlet-name>
+    <servlet-class>com.bank.GetData</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetData</servlet-name>
+    <url-pattern>/GetData</url-pattern>
+  </servlet-mapping>
 </web-app>
