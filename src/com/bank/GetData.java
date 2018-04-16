@@ -1,6 +1,7 @@
 package com.bank;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,10 +23,11 @@ public class GetData extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Connection connection=null;
 		PreparedStatement pstmt1=null,pstmt2=null;
 		ResultSet rs1=null,rs2=null;
+		PrintWriter out=response.getWriter();
+		response.setContentType("text/html");
 		try
 		{
 			String search=request.getParameter("search");
@@ -35,15 +37,22 @@ public class GetData extends HttpServlet {
 			pstmt1=connection.prepareStatement("select bc.account_number,bc.name,bc.location,bb.balance from bank_customers bc,bank_balance bb where bc.account_number=bb.account_number and bc.location=?");
 			pstmt1.setString(1, search);
 			rs1=pstmt1.executeQuery();
-			while (rs1.next()) {
-				System.out.println(rs1.getInt(1)+" "+rs1.getString(2)+" "+rs1.getString(3)+" "+rs1.getInt(4));
-			}
 			
 			pstmt2=connection.prepareStatement("select sum(balance) from bank_customers bc,bank_balance bb where bc.account_number=bb.account_number and bc.location=?");
 			pstmt2.setString(1, search);
 			rs2=pstmt2.executeQuery();
+			
+			out.println("<table  width='500px'>");
+			out.println("<tr> <th>Account Number</th> <th>Name</th>	<th>Location</th> <th>Balance</th> </tr>");
+			while (rs1.next()) {
+				out.println("<tr align='center'>");
+				out.println("<td>"+rs1.getInt(1)+"</td><td> "+rs1.getString(2)+"</td><td> "+rs1.getString(3)+" </td><td>"+rs1.getInt(4)+"</td>");
+				out.println("</tr>");
+			}
+
 			rs2.next();
-			System.out.println(rs2.getInt(1));
+			out.println("<tr><td colspan='4' align='right' ><strong>Total: </strong>"+rs2.getInt(1)+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tr></td>");
+			out.println("</table>");
 		}
 		catch(SQLException sql)
 		{
@@ -67,7 +76,7 @@ public class GetData extends HttpServlet {
 			}
 		}
 	}
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//System.out.println("doPost");
 		doGet(request, response);
