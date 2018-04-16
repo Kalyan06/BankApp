@@ -6,7 +6,8 @@
 </head>
 <body>
 	<table>
-		<form action="InsertData1" method="post">
+		<caption>Account Creation</caption>
+		<form action="InsertData" method="post">
 		<tr>
 			<td><label>Account Number</label></td>
 			<td><input type="text" name="accno" required></td>
@@ -29,8 +30,10 @@
 		</form>
 	</table><br><br><br>
 	<table>
+		<caption>Search</caption>
 		<form action="GetData" method="post">
-		<tr><td>Enter Location <input type="text" name="search"> </td><td> <input type="submit" value="Search"></td></tr>
+		<tr><td>Enter Location <input type="text" name="search" placeholder="Ex: Delhi, Hyderabad" title="letters are case sensitive">
+		 </td><td> <input type="submit" value="Search" title="Search in database"> </td></tr>
 		</form>
 	</table> 
 	

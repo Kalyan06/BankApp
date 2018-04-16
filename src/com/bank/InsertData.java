@@ -36,7 +36,6 @@ public class InsertData extends HttpServlet {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			connection=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "tiger");
 			pstmt=connection.prepareStatement("insert into bank_customers values(?,?,?)");
-			
 			pstmt.setInt(1, accno);
 			pstmt.setString(2, name);
 			pstmt.setString(3, loc);
