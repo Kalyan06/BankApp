@@ -33,7 +33,7 @@ public class GetData extends HttpServlet {
 			String search=request.getParameter("search");
 			//Mysql connection properties
 			Class.forName("com.mysql.jdbc.Driver");
-			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useSSL=false","root","root");
+			connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/rankedmodel?useSSL=false","root","root");
 			
 //			Oracle connection Properties
 //			Class.forName("oracle.jdbc.driver.OracleDriver");
